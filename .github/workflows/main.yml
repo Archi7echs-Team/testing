@@ -103,11 +103,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: "docs"
-          path: website
+          path: ${{ github.workspace }}/website
 
       - name: show files
         run: |
-          ls -r website
+          ls -r ${{ github.workspace }}
 
       - name: Run format.py and remove it
         run: |
