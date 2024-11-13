@@ -118,9 +118,8 @@ jobs:
         with:
           name: "docs"
 
-      - name: .github/workflows/format.py to website, run it and remove it
+      - name: Run format.py and remove it
         run: |
-          cp //.github/workflows/format.py .
           python3 format.py
           rm format.py
 
