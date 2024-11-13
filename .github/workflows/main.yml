@@ -66,29 +66,21 @@ jobs:
 
       - name: push to builds repo
         run: |
-          cd "${RUNNER_TEMP}/master"
+          pushd "${RUNNER_TEMP}/master"
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "$(date)" || continue
           git push
-          pwd
-
         env:
           TZ: Europe/Rome
-
-      - name: check current dir and files
-        run: |
-          pwd
-          git status
-          ls -R documents/
 
       - name: Upload website files
         uses: actions/upload-artifact@v4
         if: github.ref == 'refs/heads/sources'
         with:
           name: docs
-          path: "./documents"
+          path: "${RUNNER_TEMP}/master/documents"
 
 
   deploy:
