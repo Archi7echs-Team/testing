@@ -74,10 +74,12 @@ jobs:
           git push
         env:
           TZ: Europe/Rome
+          
+      - name: list files in master/documents
+        run: ls -R "${RUNNER_TEMP}/master/documents"
 
       - name: Upload website files
         uses: actions/upload-artifact@v4
-        if: github.ref == 'refs/heads/sources'
         with:
           name: docs
           path: "${RUNNER_TEMP}/master/documents"
