@@ -74,9 +74,10 @@ jobs:
           git push
         env:
           TZ: Europe/Rome
-          
-      - name: list files in master/documents
-        run: ls -R "${RUNNER_TEMP}/master/documents"
+
+      - name: copy runner.temp/master/documents to runner.temp/master/docs
+        run: |
+          cp -r "${RUNNER_TEMP}/master/documents" "${RUNNER_TEMP}/master/docs"
 
       - name: Upload website files
         uses: actions/upload-artifact@v4
