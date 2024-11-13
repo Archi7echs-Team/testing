@@ -78,7 +78,7 @@ jobs:
       - name: check current dir and files
         run: |
           pwd
-          ls -R
+          ls documents
 
       - name: Upload website files
         uses: actions/upload-artifact@v4
