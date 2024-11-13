@@ -99,11 +99,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: Print current directory and branch
-        run: |
-          pwd
-          git status
-
       - name: Change directory
         run: cd website
 
@@ -115,6 +110,7 @@ jobs:
 
       - name: Run format.py and remove it
         run: |
+          pwd
           python3 format.py
           rm format.py
 
