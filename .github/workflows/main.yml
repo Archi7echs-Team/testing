@@ -77,13 +77,13 @@ jobs:
 
       - name: copy runner.temp/master/documents to runner.temp/master/docs
         run: |
-          cp -r "${RUNNER_TEMP}/master/documents" "${RUNNER_TEMP}/master/docs"
+          mv "${RUNNER_TEMP}/master/documents" "${RUNNER_TEMP}/master/docs"
 
       - name: Upload website files
         uses: actions/upload-artifact@v4
         with:
           name: docs
-          path: "${RUNNER_TEMP}/master/documents"
+          path: "${RUNNER_TEMP}/master/docs"
 
 
   deploy:
@@ -115,6 +115,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: "docs"
+
+      - name: Move files
+        run: |
+          mv docs documents
 
       - name: Run format.py and remove it
         run: |
